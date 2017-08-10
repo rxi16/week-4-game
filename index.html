@@ -15,17 +15,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!--Link to CSS style file-->
-	<link src="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-
-<body>
+<body background="http://1.bp.blogspot.com/_F94JTwTwuvM/TOCXECdKe4I/AAAAAAAAAIg/KTJEVk8jVhU/s1600/Final+negative+space+image.JPG">
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<h1 class="text-center">Crystals Collector!</h1>
 		</div>
 		<div class="row">
 			<div class="col-lg-4">
-				<div class="panel panel-info">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Directions</h3>
 					</div>
@@ -41,7 +40,7 @@
 			<div class="col-lg-5">
 			<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-primary">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Random Number</h3>
 					</div>
@@ -53,22 +52,22 @@
 			</div>
 			<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-primary">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Crystals</h3>
 					</div>
 					<div class="panel-body row">
 						<div class="col-lg-3">
-							<button class="btn btn-default img-homogeneous" value="orangeVal"><img src="assets/images/orange.jpg" alt="orange crystal" /></button>
+							<button class="btn btn-default" id="btnOrange"><img src="assets/images/orange.jpg" alt="orange crystal" class="img-homogeneous" /></button>
 						</div>
 						<div class="col-lg-3">
-							<button class="btn btn-default" value="clearVal"><img src="assets/images/clear.jpg" alt="clear crystal" class="img-homogeneous" /></button>
+							<button class="btn btn-default" id="btnClear"><img src="assets/images/clear.jpg" alt="clear crystal" class="img-homogeneous" /></button>
 						</div>
 						<div class="col-lg-3">
-							<button class="btn btn-default" value="purpleVal"><img src="assets/images/purple.jpg" alt="purple crystal" class="img-homogeneous" /></button>
+							<button class="btn btn-default" id="btnPurple"><img src="assets/images/purple.jpg" alt="purple crystal" class="img-homogeneous" /></button>
 						</div>
 						<div class="col-lg-3">
-							<button class="btn btn-default" value="blueVal"><img src="assets/images/blue.jpg" alt="blue crystal" class="img-homogeneous" /></button>
+							<button class="btn btn-default" id="btnBlue"><img src="assets/images/blue.jpg" alt="blue crystal" class="img-homogeneous" /></button>
 						</div>
 					</div>
 				</div>
@@ -76,12 +75,12 @@
 			</div>
 			<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-primary">
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title" id="totScore">Your total score is:</h3>
+						<h3 class="panel-title">Your total score is:</h3>
 					</div>
 					<div class="panel-body">
-						<h1>totScore</h1>
+						<h1 id="panel-totScore"></h1>
 					</div>
 				</div>
 			</div>
@@ -90,18 +89,19 @@
 			<div class="col-lg-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">result</h3>
+						<h1 class="panel-title" id="result">Result</h1>
 					</div>
 					<div class="panel-body">
-						<h1>Wins: </h1>
-						<h1>Losses: </h1>
+						<h1 id="wins"></h1>
+						<h1 id="losses"></h1>
+						<h1 id="yourResult"></h1>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 <script type="text/javascript">
-	$("document").ready(function(event) {
+	$(document).ready(function(event) {
 
 		var ranNum = 0;
 		var orangeVal = 0;
@@ -109,21 +109,108 @@
 		var purpleVal = 0;
 		var blueVal = 0;
 		var totScore = 0;
-		var result = "";
+		var wins = 0;
+		var losses = 0;
 
-		ranNum = Math.floor(Math.random() * 102) + 19;
-		orangeVal = Math.floor(Math.random() * 12) + 1;
-		clearVal = Math.floor(Math.random() * 12) + 1;
-		purpleVal = Math.floor(Math.random() * 12) + 1;
-		blueVal = Math.floor(Math.random() * 12) + 1;
-		totScore = ;
+		//Assigns values to random number, crystals, and sets total score to 0 
+		function startRound() {
+			ranNum = Math.floor(Math.random() * 102) + 19;
+			orangeVal = Math.floor(Math.random() * 12) + 1;
+			clearVal = Math.floor(Math.random() * 12) + 1;
+			purpleVal = Math.floor(Math.random() * 12) + 1;
+			blueVal = Math.floor(Math.random() * 12) + 1;
+			totScore = 0;
+		}
+		function startRoundDisplay() {
+			//Displays random number
+			$("#panel-ranNum").html(ranNum);
 
-		$("document").on("click", function(event) {
+			//Displays totScore of 0 upon page-reloading
+			$("#panel-totScore").html(totScore);
+		}
 
+		//Calls functions to assign and display upon page-reloading
+		startRound();
+		startRoundDisplay();
+		
+		//Displays 0 wins and 0 losses upon page-reloading
+		$("#wins").html("Wins: " + wins);
+		$("#losses").html("Losses: " + losses);
+
+		//Adjusts total score every time a button is clicked
+		$("#btnOrange").on("click", function(event) {
+			totScore += orangeVal;
+			$("#panel-totScore").html(totScore);
+			if (totScore == ranNum) {
+				wins++;
+				$("#wins").html("Wins: " + wins);
+				$("#yourResult").html("You win!");
+				startRound();
+				startRoundDisplay();
+			}
+			else if (totScore > ranNum) {
+				losses++;
+				$("#losses").html("Losses: " + losses);
+				$("#yourResult").html("You lose!");
+				startRound();
+				startRoundDisplay();
+			}
+		});
+		$("#btnClear").on("click", function(event) {
+			totScore += clearVal;
+			$("#panel-totScore").html(totScore);
+			if (totScore == ranNum) {
+				wins++;
+				$("#wins").html("Wins: " + wins);
+				$("#yourResult").html("You win!");
+				startRound();
+				startRoundDisplay();
+			}
+			else if (totScore > ranNum) {
+				losses++;
+				$("#losses").html("Losses: " + losses);
+				$("#yourResult").html("You lose!");
+				startRound();
+				startRoundDisplay();
+			}
+		});
+		$("#btnPurple").on("click", function(event) {
+			totScore += purpleVal;
+			$("#panel-totScore").html(totScore);
+			if (totScore == ranNum) {
+				wins++;
+				$("#wins").html("Wins: " + wins);
+				$("#yourResult").html("You win!");
+				startRound();
+				startRoundDisplay();
+			}
+			else if (totScore > ranNum) {
+				losses++;
+				$("#losses").html("Losses: " + losses);
+				$("#yourResult").html("You lose!");
+				startRound();
+				startRoundDisplay();
+			}
+		});
+		$("#btnBlue").on("click", function(event) {
+			totScore += blueVal;
+			$("#panel-totScore").html(totScore);
+			if (totScore == ranNum) {
+				wins++;
+				$("#wins").html("Wins: " + wins);
+				$("#yourResult").html("You win!");
+				startRound();
+				startRoundDisplay();
+			}
+			else if (totScore > ranNum) {
+				losses++;
+				$("#losses").html("Losses: " + losses);
+				$("#yourResult").html("You lose!");
+				startRound();
+				startRoundDisplay();
+			}
 		});
 
-		$("#panel-ranNum").html(ranNum);
-		$("#panel-totScore").html(totScore);
 	});
 </script>
 </body>
