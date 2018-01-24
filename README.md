@@ -1,3 +1,3 @@
 # Crystals Game Collector
 
-(images/Crystals_Collector.png)
+![Crystals_Collector](images/Crystals_Collector.png)
