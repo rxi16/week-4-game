@@ -2,7 +2,7 @@
 
 ![Crystals_Collector](images/Crystals_Collector.png)
 
-### Directions
+### Game Directions
 1. You will be given a random number at the start of the game.
 2. There are four crystals.  By clicking on a crystal you will add a specific amount of points to your total score.
 3. The value of each crystal is hidden from you until you click on it.
