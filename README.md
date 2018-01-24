@@ -1,1 +1,3 @@
-# week-4-game
+# Crystals Game Collector
+
+(images/Crystals_Collector.png)
